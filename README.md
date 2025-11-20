@@ -21,13 +21,13 @@ python inf_ultraflux.py
 - Generated images are saved into `results/ultra_flux_*.jpeg` at 4096×4096 resolution; edit the prompt list or pipeline arguments inside the script to customize inference.
 
 ## Why UltraFlux?
-- **4K positional robustness.** Resonance 2D RoPE with YaRN keeps training-window awareness while remaining band-aware and aspect-ratio aware, avoiding ghosting and aliasing when extrapolating to extreme resolutions.
+- **4K positional robustness.** Resonance 2D RoPE with YaRN keeps training-window awareness while remaining band-aware and aspect-ratio aware to avoiding ghosting.
 - **Detail-preserving compression.** A lightweight, non-adversarial post-training routine sharpens Flux VAE reconstructions at 4K without sacrificing throughput, resolving the usual trade-off between speed and micro-detail.
 - **4K-aware objectives.** The SNR-Aware Huber Wavelet Training Objective emphasizes high-frequency fidelity in the latent space so gradients stay balanced across timesteps and frequency bands.
 - **Aesthetic-aware scheduling.** Stage-wise Aesthetic Curriculum Learning (SACL) routes high-aesthetic supervision toward high-noise steps, sculpting the model prior where it matters most for vivid detail and alignment.
 
 ## MultiAspect-4K-1M Dataset
-- **Scale and coverage.** 1M native and near-4K images with controlled aspect-ratio sampling to ensure both ultra-wide and portrait regimes are equally represented.
+- **Scale and coverage.** 1M native and near-4K images with controlled aspect-ratio sampling to ensure both wide and portrait regimes are equally represented.
 - **Content balance.** A dual-channel collection pipeline debiases landscape-heavy sources toward human-centric content.
 - **Rich metadata.** Every sample includes bilingual captions, subject tags, CLIP/VLM-based quality and aesthetic scores, and classical IQA metrics, enabling targeted subset sampling for specific training stages.
 
