@@ -10,6 +10,18 @@
 
 ![UltraFlux samples](fig/git_image_full.jpg)
 
+
+## 👥 Authors
+
+> [**Tian Ye**](https://owen718.github.io/)<sup>1</sup>\*‡,[**Song Fei**](https://feisong123.github.io)<sup>1</sup>\*, [**Lei Zhu**](https://sites.google.com/site/indexlzhu/home)<sup>1,2</sup>†
+>
+> <sup>1</sup>The Hong Kong University of Science and Technology (Guangzhou)  
+> <sup>2</sup>The Hong Kong University of Science and Technology  
+>
+> \*Equal Contribution, ‡Project Leader, †Corresponding Author
+
+---
+
 ## Inference Quickstart
 - The script `inf_ultraflux.py` downloads the latest `Owen777/UltraFlux-v1` weights (transformer + VAE) and runs a set of curated prompts.
 - Ensure PyTorch, `diffusers`, and CUDA are available, then run:
