@@ -3,12 +3,22 @@
 
 <p align="center"> 
 <a href="https://huggingface.co/Owen777/UltraFlux-v1"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Model&color=green"></a>
-<!-- <a href="https://huggingface.co/datasets/bytedance-research/UNO-1M"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Dataset&color=yellow"></a> -->
+<a href="https://huggingface.co/Owen777/UltraFlux-v1-TechReport/resolve/main/Techreport_UltraFlux.pdf"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=TechReport&color=yellow"></a>
 </p>
 
-UltraFlux is a diffusion transformer that extends Flux backbones to native 4K synthesis with consistent quality across a wide range of aspect ratios. The project unifies data, architecture, objectives, and optimization so that positional encoding, VAE compression, and loss design reinforce each other rather than compete. This README outlines the motivation, core ideas, and resources released with the paper.
+**UltraFlux is a diffusion transformer that extends Flux backbones to native 4K synthesis with consistent quality across a wide range of aspect ratios. The project unifies data, architecture, objectives, and optimization so that positional encoding, VAE compression, and loss design reinforce each other rather than compete.**
 
 ![UltraFlux samples](fig/git_image_full.jpg)
+
+## Inference Quickstart
+- The script `inf_ultraflux.py` downloads the latest `Owen777/UltraFlux-v1` weights (transformer + VAE) and runs a set of curated prompts.
+- Ensure PyTorch, `diffusers`, and CUDA are available, then run:
+
+```bash
+python inf_ultraflux.py
+```
+
+- Generated images are saved into `results/ultra_flux_*.jpeg` at 4096×4096 resolution; edit the prompt list or pipeline arguments inside the script to customize inference.
 
 ## Why UltraFlux?
 - **4K positional robustness.** Resonance 2D RoPE with YaRN keeps training-window awareness while remaining band-aware and aspect-ratio aware, avoiding ghosting and aliasing when extrapolating to extreme resolutions.
@@ -42,12 +52,11 @@ We will release the full stack upon publication:
 ## 🚀 Updates
 For the purpose of fostering research and the open-source community, we plan to open-source the entire project, encompassing training, inference, weights, etc. Thank you for your patience and support! 🌟
 - [x] Release GitHub repo.
-- [x] Release inference code (`inf_ultraflux.py`)
+- [x] Release inference code (`inf_ultraflux.py`).
+- [ ] Release training code.
 - [x] Release model checkpoints.
 - [ ] Release arXiv paper.
-- [ ] Release training code.
-
 - [ ] Release HuggingFace Space demo.
-- [ ] Release dataset (MultiAspect-4K-1M).
+- [x] Release dataset (MultiAspect-4K-1M).
 
 Stay tuned for links and usage instructions. For updates, please watch this repository or open an issue.
