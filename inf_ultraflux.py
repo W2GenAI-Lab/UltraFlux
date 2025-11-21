@@ -9,9 +9,8 @@ from ultraflux.autoencoder_kl import AutoencoderKL
 import os
 
 local_vae = AutoencoderKL.from_pretrained("Owen777/UltraFlux-v1",subfolder="vae", torch_dtype=torch.bfloat16)
-# transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1",subfolder="transformer",torch_dtype=torch.bfloat16)
-transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1-1-Transformer",torch_dtype=torch.bfloat16)
-
+transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1",subfolder="transformer",torch_dtype=torch.bfloat16)
+# transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1-1-Transformer",torch_dtype=torch.bfloat16) # NOTE:uncomment this line to use UltraFlux-v1.1
 pipe = FluxPipeline.from_pretrained("Owen777/UltraFlux-v1", vae=local_vae, torch_dtype=torch.bfloat16, transformer=transformer)
 from diffusers import FlowMatchEulerDiscreteScheduler
 pipe.scheduler.config.use_dynamic_shifting = False
@@ -34,29 +33,32 @@ prompts = [
 "A middle-aged man with a salt-and-pepper beard and a stylish hat plays an acoustic guitar, dressed in a chic blazer over a dark shirt, standing in a cozy, softly blurred room with a muted, neutral-toned background. The camera captures him from a slight low angle, with a medium close-up shot that emphasizes his focused expression and the elegant movement of his fingers on the strings. Warm, soft key lighting gently highlights his face and guitar, creating a peaceful, intimate atmosphere with a hint of natural sunlight coming from a nearby window, casting a golden hue on the scene.",
 "A breathtaking view of a vibrant night sky filled with a swirling Milky Way galaxy, its cosmic colors reflecting in the serene surface of a still, steaming geothermal pool. The pool is surrounded by dark, shadowy silhouettes of trees, their forms barely visible in the misty atmosphere. Soft, ethereal light glows from the galaxy above, casting gentle reflections on the water, creating a tranquil, otherworldly ambiance. The scene is set during a clear, crisp night, with cool, muted blues and purples dominating the color palette, evoking a sense of peaceful solitude.",
 
-"A photorealistic studio portrait of a young woman with olive skin, freckles, and loose chestnut curls, seated before a charcoal muslin backdrop. Soft octagonal lights wrap her face with a creamy gradient, highlighting the fine texture of her silk blouse and the delicate gold rings on her fingers. Gentle lens bloom catches in her dark eyes, conveying calm determination while stray hairs glint against the shallow depth of field.",
 "A cinematic profile shot of an elderly man in a sunlit atelier, his weathered hands resting on a workbench scattered with chisels and wood shavings. Shafts of morning light filter through dusty windows, revealing the texture of his linen shirt and the intricate grain of the half-carved sculpture beside him. The mood is contemplative, with warm amber tones contrasting the cool slate shadows in the corners of the room.",
 "An expansive alpine landscape at sunrise where serrated granite peaks rise above a valley carpeted in lavender wildflowers. Mist curls around the cliffs as glacial streams snake between mossy boulders, reflecting a sky awash in peach and icy blue. The atmosphere feels crisp and serene, with long shadows emphasizing the scale of the untouched wilderness.",
-"A windswept black-sand coastline just after a storm, with turquoise waves exploding against basalt arches and sending silver spray through the air. Wet driftwood litters the beach, and distant mountains fade under bruised clouds tinged with magenta. The lighting is dramatic, with sun rays piercing the gloom and illuminating the swirling seabirds overhead.",
 "A dense rainforest ravine dominated by a tiered waterfall cascading into a jade pool. Giant ferns, luminous orchids, and moss-coated branches frame the scene while humidity hangs as a golden haze. Sunbeams penetrate the canopy, creating glittering droplets that suspend midair and give the entire composition a dreamlike vibrancy.",
-"A desert canyon at blue hour where sculpted sandstone walls glow in gradients of amber, rose, and violet. A narrow river snakes through the gorge, reflecting the first stars as fireflies drift above sparse desert blooms. The stillness is punctuated by a lone traveler leading a camel, their silhouettes etched against the luminous horizon.",
-"A futuristic megacity plaza at midnight, dominated by mirrored skyscrapers whose holographic signage ripples across rain-slick streets. Crowds in reflective ponchos weave between suspended trams, while bioluminescent trees cast aqua light on the polished basalt benches. The scene pulses with neon magentas, electric cyans, and chrome reflections.",
-"An ornate Victorian library interior viewed from a mezzanine, with spiraling iron staircases and towering bookshelves lined with worn leather tomes. Brass lamps and stained-glass skylights bathe the reading tables in honeyed light, dust motes shimmering above scholars immersed in parchment maps. Every surface exudes age and meticulous craftsmanship.",
 "A rustic farmhouse kitchen during golden hour, where a wooden table overflows with heirloom tomatoes, freshly baked sourdough, and sprigs of basil in hand-thrown ceramics. Sunlight pours through gauzy curtains, catching flour particles suspended above a marble counter. The scene radiates warmth, inviting textures, and the promise of a shared meal.",
 "A bustling night market food stall framed by colorful paper lanterns and stainless-steel countertops sizzling with skewers. Vendors fan glowing charcoal while steam rises from bamboo baskets, and handwritten menus dangle from strings. The air is thick with aromas of roasted sesame and chili oil, and the crowd’s motion blurs under long exposure lighting.",
 "A top-down gourmet plating of matcha mille crepe cake beside crystalline yuzu jellies on a matte slate board. Dewy berries glisten under controlled studio light, and powdered sugar drifts like snow onto the sculpted dessert layers. Reflections are carefully managed to showcase the velvety textures and vibrant palette.",
 "A serene Japanese tea ceremony set on tatami mats, with a host in indigo kimono whisking emerald tea in a raku bowl. Paper shoji screens diffuse soft daylight, accenting the minimal ikebana arrangement and lacquered utensils. The mood is meditative, every element emphasizing intentional craftsmanship.",
 "An industrial sci-fi hangar housing a sleek explorer spacecraft suspended by maglev cranes, floodlit by cool white panels. Engineers in exosuits hover on maintenance platforms, sparks cascading as they weld carbon fiber plating. Vapor trails drift across the polished floor, capturing reflections of neon status displays.",
 "A high-fantasy citadel perched on a cliff under a moonlit sky, its spires adorned with stained glass and banners fluttering in the night wind. Bioluminescent vines climb the stone walls while wyverns circle above, their scales catching the silver glow. Torches along the bridge cast rhythmic shadows, creating a sense of impending adventure.",
-"A tranquil underwater coral reef filled with swaying sea fans, clownfish darting around anemones, and shafts of sunlight piercing the aquamarine water. Tiny air bubbles shimmer as they rise, and the sandy floor ripples with the gentle current. The palette balances warm coral reds with cool cerulean gradients for immersive depth.",
 "A polar night landscape where auroras unfurl above an icy fjord, reflecting emerald and violet ribbons onto the mirrored water. Snow-dusted pines frame a wooden cabin emitting a faint amber glow, and the distant mountains glow with moonlit edges. The stillness is profound, with only faint ice fog drifting across the foreground.",
 "An anime-inspired magical girl poised on a floating crystal platform, her pastel hair billowing as constellations swirl behind her. Intricate armor accented with glowing runes refracts prismatic light, and her staff releases streams of glittering particles. The scene blends dynamic action lines with painterly gradients for dramatic flair.",
 "A dynamic anime mecha battle staged above a futuristic wasteland, with two towering robots trading energy blades that ignite the smoky dusk sky. Shockwaves ripple through shattered skyscrapers, and debris glows from residual plasma. Bold cel-shaded highlights emphasize their articulated armor and glowing visors.",
 "A cozy chibi-style cafe interior populated by round-faced characters sipping oversized lattes beneath string lights. Wooden beams, chalkboard menus, and potted succulents create a charming atmosphere, while pastries shaped like tiny animals fill glass displays. Soft pastel tones and gentle gradients evoke playful warmth.",
 "A retro-futuristic diner bathed in neon magenta and teal, with chrome booths, reflective checkered floors, and a row of milkshakes topped with whipped cream. Patrons in holographic jackets chat with a friendly android barista, jukebox lights pulsing to synthwave beats. The scene combines nostalgic details with sleek sci-fi embellishments."
+
 ]
 
+
+from pathlib import Path
+
 for idx, prompt in enumerate(prompts, start=1):
+    out_path = Path("results") / f"ultra_flux_{idx:02d}.jpeg"
+    if out_path.exists():
+        # 文件已经存在，跳过这个 idx
+        continue
+    
     image = pipe(
         prompt,
         height=4096,
