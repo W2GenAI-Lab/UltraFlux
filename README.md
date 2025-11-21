@@ -40,6 +40,16 @@
 
 ---
 
+
+
+## 📰 News ✨✨
+
+**[2025.11.21]** – We released the **UltraFlux-v1.1** transformer checkpoint. It is fine-tuned on a carefully curated set of high-aesthetic synthetic images to further improve visual aesthetics and composition quality. You can now enable it easily by uncommenting the corresponding lines in `inf_ultraflux.py`!
+
+**[2025.11.20]** – We released the **UltraFlux-v1** checkpoint, inference code, and the accompanying tech report.
+
+---
+
 ## Inference Quickstart
 - The script `inf_ultraflux.py` downloads the latest `Owen777/UltraFlux-v1` weights (transformer + VAE) and runs a set of curated prompts.
 - Ensure PyTorch, `diffusers`, and CUDA are available, then run:
@@ -69,14 +79,14 @@ python inf_ultraflux.py
 
 ## Results
 UltraFlux surpasses recent native-4K and training-free scaling baselines on standard 4K benchmarks spanning:
-- Pixel fidelity at 4096×4096 and higher
+- Image fidelity at 4096×4096 and higher
 - Aesthetic preference scores
 - Text-image alignment metrics across diverse aspect ratios
 
 ## Resources
 We will release the full stack upon publication:
 - MultiAspect-4K-1M dataset with metadata loaders
-- Training pipelines, checkpoints, and inference scripts
+- Training pipelines
 - Evaluation code covering fidelity, aesthetic, and alignment metrics
 
 ## 🚀 Updates
