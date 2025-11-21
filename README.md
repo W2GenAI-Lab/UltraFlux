@@ -42,6 +42,11 @@
     <td align="center"><img src="fig/ultra_flux_13.jpeg" alt="UltraFlux sample 13 (4096×4096)" width="450"></td>
     <td align="center"><img src="fig/ultra_flux_14.jpeg" alt="UltraFlux sample 14 (4096×4096)" width="450"></td>
   </tr>
+    <tr>
+    <td align="center"><img src="fig/ultra_flux_15.jpeg" alt="UltraFlux sample 15 (4096×4096)" width="450"></td>
+    <td align="center"><img src="fig/ultra_flux_16.jpeg" alt="UltraFlux sample 16 (4096×4096)" width="450"></td>
+  </tr>
+
 </table>
 <p align="center"><em>Each sample is rendered at 4096×4096 resolution.</em></p>
 
