@@ -123,3 +123,19 @@ For the purpose of fostering research and the open-source community, we plan to 
 - [ ] Release dataset (MultiAspect-4K-1M).
 
 Stay tuned for links and usage instructions. For updates, please watch this repository or open an issue.
+
+
+
+## BibTeX citation
+```
+@misc{ye2025ultrafluxdatamodelcodesignhighquality,
+      title={UltraFlux: Data-Model Co-Design for High-quality Native 4K Text-to-Image Generation across Diverse Aspect Ratios}, 
+      author={Tian Ye and Song Fei and Lei Zhu},
+      year={2025},
+      eprint={2511.18050},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.18050}, 
+}
+```
+
