@@ -1,4 +1,4 @@
-# UltraFlux: Data-Model Co-Design for High-quality Native 4K Text-to-Image Generation across Diverse Aspect Ratios
+# [UltraFlux: Data-Model Co-Design for High-quality Native 4K Text-to-Image Generation across Diverse Aspect Ratios](https://w2genai-lab.github.io/UltraFlux/)
 
 
 <p align="center"> 
