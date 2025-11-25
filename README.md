@@ -82,6 +82,32 @@ python inf_ultraflux.py
 ```
 
 - Generated images are saved into `results/ultra_flux_*.jpeg` at 4096×4096 resolution; edit the prompt list or pipeline arguments inside the script to customize inference.
+- Run the FastAPI HTTP service (exposes `/generate`, `/healthz`, `/`):
+
+```bash
+python -m pip install -r requirements.txt
+uvicorn service:app --host 0.0.0.0 --port 8000
+```
+
+- Sample request:
+
+```bash
+curl -X POST http://localhost:8000/generate \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "A neon-lit forest with volumetric lighting"}'
+```
+
+- Docker workflow:
+
+```bash
+docker build -t ultraflux-service .
+docker run --gpus all -p 8000:8000 ultraflux-service
+```
+
+- Optional env vars:
+  - `ULTRAFLUX_MODEL_ID` (default `Owen777/UltraFlux-v1`)
+  - `ULTRAFLUX_DEVICE` (default `cuda`)
+  - `ULTRAFLUX_RESULTS_DIR` (default `results`)
 
 ## Why UltraFlux?
 - **4K positional robustness.** Resonance 2D RoPE with YaRN keeps training-window awareness while remaining band-aware and aspect-ratio aware to avoiding ghosting.
