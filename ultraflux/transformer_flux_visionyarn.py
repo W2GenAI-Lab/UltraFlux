@@ -781,7 +781,9 @@ class FluxTransformer2DModel(
         pooled_projection_dim: int = 768,
         guidance_embeds: bool = False,
         axes_dims_rope: Tuple[int, int, int] = (16, 56, 56),
-        method: str = 'yarn'
+        method: str = 'yarn',
+        enable_gqa: Optional[bool] = None,  # Ignored parameter for compatibility
+        **kwargs,  # Accept any other unknown parameters
     ):
         super().__init__()
         self.out_channels = out_channels or in_channels

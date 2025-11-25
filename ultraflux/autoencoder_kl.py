@@ -78,6 +78,8 @@ class AutoencoderKL(ModelMixin, ConfigMixin, FromOriginalModelMixin):
         use_quant_conv: bool = True,
         use_post_quant_conv: bool = True,
         stride: int = 1,
+        enable_gqa: Optional[bool] = None,  # Ignored parameter for compatibility
+        **kwargs,  # Accept any other unknown parameters
     ):
         super().__init__()
 
