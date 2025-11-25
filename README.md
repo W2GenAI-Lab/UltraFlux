@@ -120,6 +120,6 @@ For the purpose of fostering research and the open-source community, we plan to 
 - [x] Release model checkpoints.
 - [ ] Release arXiv paper.
 - [ ] Release HuggingFace Space demo.
-- [x] Release dataset (MultiAspect-4K-1M).
+- [ ] Release dataset (MultiAspect-4K-1M).
 
 Stay tuned for links and usage instructions. For updates, please watch this repository or open an issue.
