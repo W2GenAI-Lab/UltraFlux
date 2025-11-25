@@ -3,7 +3,12 @@ FROM pytorch/pytorch:2.4.0-cuda12.1-cudnn9-runtime
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get update \
+    && apt-get install -y iproute2 iputils-ping openssh-server telnet \
+    && apt-get clean \
+    && mkdir -p /run/sshd \
+    && chmod 755 /run/sshd \
+    && pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
