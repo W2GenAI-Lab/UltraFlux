@@ -4,7 +4,7 @@ from typing import Dict, List, Optional, Tuple
 import torch
 from PIL import Image
 from ultraflux.pipeline_flux import FluxPipeline
-from ultraflux.transformer_flux_visionyarn import FluxTransformer2DModel
+from ultraflux.transformer_flux import FluxTransformer2DModel
 from ultraflux.autoencoder_kl import AutoencoderKL
 import os
 
@@ -57,10 +57,6 @@ from pathlib import Path
 
 for idx, prompt in enumerate(prompts, start=1):
     out_path = Path("results") / f"ultra_flux_{idx:02d}.jpeg"
-    if out_path.exists():
-        # 文件已经存在，跳过这个 idx
-        continue
-    
     image = pipe(
         prompt,
         height=4096,
