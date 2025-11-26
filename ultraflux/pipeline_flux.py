@@ -185,8 +185,8 @@ class FluxPipeline(DiffusionPipeline, FluxLoraLoaderMixin):
         )
         self.default_sample_size = 64
 
-        print(self.vae.config)
-        print(self.transformer.config)
+        print("vae configs:", self.vae.config)
+        print("transformer configs:", self.transformer.config)
 
     def _get_t5_prompt_embeds(
         self,
@@ -683,7 +683,9 @@ class FluxPipeline(DiffusionPipeline, FluxLoraLoaderMixin):
                     guidance = guidance.expand(latents.shape[0])
                 else:
                     guidance = None
-
+                # ---- REMOVE enable_gqa if the scheduler added it ----# -- keep this for testing --
+                if self.joint_attention_kwargs is not None:
+                    self.joint_attention_kwargs.pop("enable_gqa", None)
                 noise_pred = self.transformer(
                     hidden_states=latents,
                     # YiYi notes: divide it by 1000 for now because we scale it by 1000 in the transforme rmodel (we should not keep it but I want to keep the inputs same for the model for testing)

@@ -331,7 +331,7 @@ class FluxAttention(torch.nn.Module, AttentionModuleMixin):
         **kwargs,
     ) -> torch.Tensor:
         attn_parameters = set(inspect.signature(self.processor.__call__).parameters.keys())
-        quiet_attn_parameters = {"ip_adapter_masks", "ip_hidden_states", "enable_gqa"}
+        quiet_attn_parameters = {"ip_adapter_masks", "ip_hidden_states"}
         unused_kwargs = [k for k, _ in kwargs.items() if k not in attn_parameters and k not in quiet_attn_parameters]
         if len(unused_kwargs) > 0:
             logger.warning(
@@ -876,10 +876,9 @@ class FluxTransformer2DModel(
         if joint_attention_kwargs is not None:
             joint_attention_kwargs = joint_attention_kwargs.copy()
             lora_scale = joint_attention_kwargs.pop("scale", 1.0)
-            # Filter out enable_gqa as it's not supported by PyTorch's scaled_dot_product_attention
+        # Remove unsupported GQA argument if passed by user or pipeline
+        if joint_attention_kwargs is not None and "enable_gqa" in joint_attention_kwargs:
             joint_attention_kwargs.pop("enable_gqa", None)
-        else:
-            lora_scale = 1.0
 
         if USE_PEFT_BACKEND:
             scale_lora_layers(self, lora_scale)

@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN apt-get update \
-    && apt-get install -y iproute2 iputils-ping openssh-server telnet \
+    && apt-get install -y iproute2 git curl iputils-ping openssh-server telnet \
     && apt-get clean \
     && mkdir -p /run/sshd \
     && chmod 755 /run/sshd \
