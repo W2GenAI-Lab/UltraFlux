@@ -9,8 +9,8 @@ from ultraflux.autoencoder_kl import AutoencoderKL
 import os
 
 local_vae = AutoencoderKL.from_pretrained("Owen777/UltraFlux-v1",subfolder="vae", torch_dtype=torch.bfloat16)
-transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1",subfolder="transformer",torch_dtype=torch.bfloat16)
-# transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1-1-Transformer",torch_dtype=torch.bfloat16) # NOTE:uncomment this line to use UltraFlux-v1.1
+# transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1",subfolder="transformer",torch_dtype=torch.bfloat16) # NOTE:uncomment this line to use UltraFlux-v1
+transformer = FluxTransformer2DModel.from_pretrained("Owen777/UltraFlux-v1-1-Transformer",torch_dtype=torch.bfloat16) #Recommended!!
 pipe = FluxPipeline.from_pretrained("Owen777/UltraFlux-v1", vae=local_vae, torch_dtype=torch.bfloat16, transformer=transformer)
 from diffusers import FlowMatchEulerDiscreteScheduler
 pipe.scheduler.config.use_dynamic_shifting = False
