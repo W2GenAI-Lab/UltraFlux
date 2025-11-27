@@ -67,6 +67,9 @@
 
 ## 📰 News ✨✨
 
+**[2025.11.26]** — Thanks to [smthemex](https://github.com/smthemex) for developing [ComfyUI_UltraFlux T2I&I2I](https://github.com/smthemex/ComfyUI_UltraFlux?tab=readme-ov-file), which enables UltraFlux to run with **as little as 8 GB GB of memory** through the GGUF integration !!
+
+
 **[2025.11.21]** – We released the **UltraFlux-v1.1** transformer checkpoint. It is fine-tuned on a carefully curated set of high-aesthetic synthetic images to further improve visual aesthetics and composition quality. You can now enable it easily by uncommenting the corresponding lines in `inf_ultraflux.py`!
 
 **[2025.11.20]** – We released the **UltraFlux-v1** checkpoint, inference code, and the accompanying tech report.
