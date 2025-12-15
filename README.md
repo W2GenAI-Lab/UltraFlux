@@ -128,6 +128,14 @@ For the purpose of fostering research and the open-source community, we plan to 
 Stay tuned for links and usage instructions. For updates, please watch this repository or open an issue.
 
 
+## Acknowledgement
+We are grateful for the following projects:
+
+
+* [Diffusers](https://github.com/huggingface/diffusers).
+* [Diffusion-4K](https://github.com/zhang0jhon/diffusion-4k/tree/main).
+* [Flux](https://huggingface.co/black-forest-labs/FLUX.1-dev).
+* [ArtiMuse](https://huggingface.co/Thunderbolt215215/ArtiMuse).
 
 ## BibTeX citation
 ```
