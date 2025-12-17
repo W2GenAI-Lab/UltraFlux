@@ -544,30 +544,29 @@ def get_1d_rotary_pos_embed(
 
         # =======================
         # === Resonance alignment ===
-        # =======================
-        # r(d) = L / λ_d = L * θ^{α_i} / (2π)     (L = ori_max_pe_len)
+        # =======================                
         if resonance:
             L = torch.tensor(float(ori_max_pe_len), dtype=dtype, device=device)
-            # θ^{α}
-            theta_pow = torch.exp(idx * torch.log(torch.tensor(theta, dtype=dtype, device=device)))
-            rot = (L * theta_pow) / (2.0 * math.pi)                   # Rotations per dimension within the training window.
-            rot_rounded = torch.clamp(torch.round(rot), min=resonance_min_rot)  # Nearest integer >= 1.
-            # Corresponding new θ̃_d = 2π * rot_int / L
-            theta_res = (2.0 * math.pi * rot_rounded) / L
-            # Solve for the new exponent α̃: θ^{α̃} = θ̃  ⇒  α̃ = log(θ̃)/log(θ)
-            alpha_res = torch.log(theta_res) / torch.log(torch.tensor(theta, dtype=dtype, device=device))
-            # Replace α_i with α̃ for subsequent base/linear/ntk spectra.
-            idx_eff = alpha_res
+            theta_t = torch.tensor(theta, dtype=dtype, device=device)
+            inv_freq = torch.exp(-idx * torch.log(theta_t))
+            rot = (L * inv_freq) / (2.0 * math.pi)  # r(α) = L * θ^{-α} / 2π
+            use_resonance = rot >= 1.0
+            rot_rounded = torch.round(rot)
+            k = torch.clamp(rot_rounded, min=resonance_min_rot)
+            target_inv_freq = (2.0 * math.pi * k) / L  # = θ^{-alpha_res}
+            alpha_res = -torch.log(target_inv_freq) / torch.log(theta_t)
+            idx_eff = torch.where(use_resonance, alpha_res, idx)
         else:
             idx_eff = idx
+
 
         # ---- YaRN basis spectra (using resonance-aligned idx_eff) ----
         beta_0, beta_1 = 1.25, 0.75
         gamma_0, gamma_1 = 16, 2
 
         # base: 1 / θ^{α̃}
-        freqs_base = 1.0 / torch.exp(idx_eff * torch.log(torch.tensor(theta, dtype=dtype, device=device)))  # [D/2]
-
+        # freqs_base = 1.0 / torch.exp(idx_eff * torch.log(torch.tensor(theta, dtype=dtype, device=device)))  # [D/2]
+        freqs_base = 1.0 / torch.exp(idx_eff * torch.log(torch.tensor(theta, dtype=dtype, device=device)))
         # linear(PI): base / s
         freqs_linear = freqs_base / scale
 
