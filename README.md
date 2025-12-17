@@ -67,7 +67,7 @@
 
 ## 📰 News ✨✨
 
-**[2025.12.27]** — Thanks to the community’s help, we fixed the implementation of **Resonance alignment** for the 2D RoPE.
+**[2025.12.17]** — Thanks to the community’s help, we fixed the implementation of **Resonance alignment** for the 2D RoPE.
 
 
 **[2025.11.26]** — Thanks to [smthemex](https://github.com/smthemex) for developing [ComfyUI_UltraFlux T2I&I2I](https://github.com/smthemex/ComfyUI_UltraFlux?tab=readme-ov-file), which enables UltraFlux to run with **as little as 8 GB GB of memory** through the GGUF integration !!
