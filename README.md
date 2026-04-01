@@ -2,8 +2,10 @@
 
 
 <p align="center"> 
+<a href="https://arxiv.org/pdf/2511.18050">
+    <img src="https://img.shields.io/badge/arXiv-2511.18050-b31b1b?logo=arxiv&logoColor=white" alt="arXiv Paper"></a>
 <a href="https://huggingface.co/Owen777/UltraFlux-v1"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Model&color=green"></a>
-<a href="https://huggingface.co/Owen777/UltraFlux-v1-TechReport/resolve/main/Techreport_UltraFlux.pdf"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=TechReport&color=yellow"></a>
+<a href="https://huggingface.co/Owen777/UltraFlux-v1/blob/main/MultiAspect-4K-1M.tar.gz"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=MultiAspect-4K-1M&color=yellow"></a>
 </p>
 
 **UltraFlux is a diffusion transformer that extends Flux backbones to native 4K synthesis with consistent quality across a wide range of aspect ratios. The project unifies data, architecture, objectives, and optimization so that positional encoding, VAE compression, and loss design reinforce each other rather than compete.**
@@ -67,6 +69,10 @@
 
 ## 📰 News ✨✨
 
+**[2026.04.01]** - We released the [MultiAspect-4K-1M](https://huggingface.co/Owen777/UltraFlux-v1/blob/main/MultiAspect-4K-1M.tar.gz) dataset and the filtering pipeline.
+
+**[2026.02.21]** - UltraFlux is accepted by **CVPR'26**.
+
 **[2025.12.17]** — Thanks to the community’s help, we fixed the implementation of **Resonance alignment** for the 2D RoPE.
 
 
@@ -88,6 +94,22 @@ python inf_ultraflux.py
 ```
 
 - Generated images are saved into `results/ultra_flux_*.jpeg` at 4096×4096 resolution; edit the prompt list or pipeline arguments inside the script to customize inference.
+
+### MultiAspect-4K-1M Dataset and Filtering Pipeline
+
+We have released the [MultiAspect-4K-1M](https://huggingface.co/Owen777/UltraFlux-v1/blob/main/MultiAspect-4K-1M.tar.gz) dataset, together with the filtering pipeline.
+
+Each sample in [MultiAspect-4K-1M](https://huggingface.co/Owen777/UltraFlux-v1/blob/main/MultiAspect-4K-1M.tar.gz) provides an `image_url` for downloading the image. The metadata also contains the attributes, including bilingual captions, character tag, VLM-based quality and aesthetic scores, and classical interpretable signals—flatness and information entropy. To better respect image provenance and the original creators, about 98% of the dataset also includes source attribution metadata: `work_url` refers to the original webpage where the image was published, `photographer` gives the creator name, and `photographer_url` links to the creator’s profile or source page.
+
+Images can be downloaded and filtering scores can be computed with:
+
+```bash
+# download the image
+python tools/download_from_image_url.py "image_url in metadata"
+
+# compute filtering scores
+python tools/filtering_pipeline.py /path/to/image.jpg
+```
 
 ## Why UltraFlux?
 - **4K positional robustness.** Resonance 2D RoPE with YaRN keeps training-window awareness while remaining band-aware and aspect-ratio aware to avoiding ghosting.
@@ -124,9 +146,9 @@ For the purpose of fostering research and the open-source community, we plan to 
 - [x] Release inference code (`inf_ultraflux.py`).
 - [ ] Release training code.
 - [x] Release model checkpoints.
-- [ ] Release arXiv paper.
+- [x] Release arXiv paper.
 - [ ] Release HuggingFace Space demo.
-- [ ] Release dataset (MultiAspect-4K-1M).
+- [x] Release dataset (MultiAspect-4K-1M).
 
 Stay tuned for links and usage instructions. For updates, please watch this repository or open an issue.
 
