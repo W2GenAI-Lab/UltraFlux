@@ -69,6 +69,8 @@
 
 ## 📰 News ✨✨
 
+**[2026.04.09]** - UltraFlux is selected as **CVPR 2026 Highlight (top 3%)**.
+
 **[2026.04.01]** - We released the [MultiAspect-4K-1M](https://huggingface.co/Owen777/UltraFlux-v1/blob/main/MultiAspect-4K-1M.tar.gz) dataset and the filtering pipeline.
 
 **[2026.02.21]** - UltraFlux is accepted by **CVPR'26**.
